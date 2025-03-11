@@ -14,7 +14,7 @@ body {
     background-image: url(back.png); /* Ensure the path is correct */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Do not repeat the image */
-}
+    background-size: contain; /* Adjust the background size for smaller devices */}
 section {
     min-height: 100vh;
     position: fixed;
@@ -81,6 +81,13 @@ section {
     bottom: 10px;
     cursor: pointer;
 }
+.float-text:hover {
+    background-color: rgba(0, 171, 239, 0.5); /* Semi-transparent highlight color */
+}
+
+.float-text:active {
+    background-color: transparent; /* Remove highlight color on click */
+}
 
 .float-card-info {
     width: 390px;
@@ -90,7 +97,7 @@ section {
     -webkit-touch-callout: none;
     overflow: hidden;
     bottom: 120px;
-    left: -100%;
+    left: -1000px;
     padding: 30px;
     transition: 0.5s ease-in-out left;
     z-index: 100; /* Ensure the float card appears below the link boxes */
@@ -112,20 +119,13 @@ section {
 }
 
 .float-card-info.active {
-    left: 5px;
+    left: 0px;
     bottom: 120px;
 }
 
 .link-boxes {
     display: flex;
     flex-direction: column; /* Stack the link boxes vertically */
-    justify-content: center; /* Center the link boxes vertically */
-    align-items: center; /* Center the link boxes horizontally */
-    position: absolute;
-    left: -150%; /* Start further off-screen to the left */
-    top: 70%; /* Lower the vertical position */
-    transform: translateY(-50%); /* Center the link boxes vertically */
-    transition: 0.5s ease-in-out left; /* Match the transition of the float card */
     z-index: 200; /* Ensure the link boxes appear above the float card */
     pointer-events: none; /* Prevent interference with the moveCard click button */
 }
@@ -137,7 +137,6 @@ section {
     background-color: transparent; /* Transparent background */
     color: rgba(255, 255, 255, 0);
     text-align: center;
-    line-height: 24px; /* Adjust line height to match the new height */
     text-decoration: none;
     transition: background-color 0.3s ease;
     margin-bottom: 5px; /* Add space between the link boxes */
@@ -146,10 +145,17 @@ section {
 
 .link-box:hover {
     background-color: #1993c2; /* Highlight color */
+    opacity: 50%;
 }
 
-.link-boxes.active {
-    left:-320px; /* Move further into view when active */
-    top: 89.5%; /* Lower the vertical position */
+.link-boxes-container {
+    position: absolute;
+    bottom: 300px; /* Initial vertical position */
+    left: 0; /* Initial horizontal position within the viewport */
+    z-index: 200; /* Ensure the link boxes container appears above the float card */
+}
+
+.link-boxes-container.active {
+    display: block; /* Show the link boxes when active */
 }
 

@@ -21,6 +21,7 @@ window.addEventListener("click", () => {
   }
 });
 
+
 // *********************
 // This Code is for only the floating card in right bottom corner
 // **********************
@@ -28,19 +29,18 @@ window.addEventListener("click", () => {
 const touchButton = document.querySelector(".float-text");
 const card = document.querySelector(".float-card-info");
 const close = document.querySelector(".gg-close-r");
-const linkBoxes = document.querySelector(".link-boxes"); // Select the link boxes
+const linkBoxesContainer = document.querySelector(".link-boxes-container"); // Select the link boxes container
 
 touchButton.addEventListener("click", moveCard);
 close.addEventListener("click", moveCard);
 
 function moveCard() {
   card.classList.toggle("active");
-  linkBoxes.classList.toggle("active"); // Toggle the active class for link boxes
+  if (linkBoxesContainer.classList.contains("active")) {
+    linkBoxesContainer.classList.remove("active");
+    linkBoxesContainer.style.display = "none";
+  } else {
+    linkBoxesContainer.classList.add("active");
+    linkBoxesContainer.style.display = "block";
+  }
 }
-
-
-
-
-
-
-
